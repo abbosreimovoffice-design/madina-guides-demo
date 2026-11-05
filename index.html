@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Madina Gidlar</title>
+<meta name="description" content="O'zbekistonning sertifikatlangan gidlari — Madina Central Asia platformasi (demo)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF8F3;--card:#fff;--ink:#2B2B2B;--mute:#8A857C;--line:#E6DECD;--gold:#B8975A;--gold2:#9C7D45;--ok:#3E7C59;--warn:#B5523B;--chip:#F3EEE3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150F;--card:#211E17;--ink:#EDE7DA;--mute:#A39D90;--line:#3A342A;--gold:#C9A86A;--gold2:#E0C38A;--ok:#7FB896;--warn:#E08A72;--chip:#2C271E}}
+:root[data-theme="dark"]{--bg:#17150F;--card:#211E17;--ink:#EDE7DA;--mute:#A39D90;--line:#3A342A;--gold:#C9A86A;--gold2:#E0C38A;--ok:#7FB896;--warn:#E08A72;--chip:#2C271E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:"Cormorant Garamond",serif;font-weight:700;letter-spacing:.18em;font-size:18px}
+.brand small{display:block;font-family:Inter;font-weight:500;letter-spacing:.25em;font-size:10px;color:var(--gold)}
+.tag{font-size:12px;color:var(--mute);border:1px solid var(--line);padding:4px 10px;border-radius:99px}
+.hero{padding:56px 0 28px}
+.hero h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(34px,6vw,58px);line-height:1.05;margin:0 0 14px}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{max-width:640px;color:var(--mute);margin:0}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin:28px 0 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat b{display:block;font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:600;line-height:1}
+.stat span{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:28px 0}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.step i{font-style:normal;font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:28px;font-weight:700}
+.step h3{margin:4px 0 6px;font-size:15px}
+.step p{margin:0;color:var(--mute);font-size:13px}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:8px 0 18px}
+@media(max-width:760px){.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}}
+.filters input,.filters select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.count{color:var(--mute);font-size:13px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.ph{aspect-ratio:4/4.4;background:var(--chip);position:relative;overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:56px;color:var(--gold)}
+.badge{position:absolute;top:10px;left:10px;font-size:11px;font-weight:600;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.92);color:#2B2B2B}
+.badge.ok::before{content:"● ";color:#3E7C59}.badge.no::before{content:"● ";color:#B5523B}
+.body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.nm{font-weight:600;font-size:15px;line-height:1.3}
+.cat{font-size:12px;color:var(--gold2)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:11px;background:var(--chip);padding:3px 8px;border-radius:99px}
+.reg{font-size:12px;color:var(--mute)}
+.rate{margin-top:auto;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:8px}
+.more{display:block;margin:24px auto 56px;padding:12px 26px;border-radius:99px;border:1px solid var(--gold);background:transparent;color:var(--gold2);font:600 14px Inter;cursor:pointer}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--mute);font-size:12px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal.on{display:flex}
+.box{background:var(--card);border-radius:18px;max-width:560px;width:100%;max-height:90vh;overflow:auto;display:grid;grid-template-columns:200px 1fr}
+@media(max-width:560px){.box{grid-template-columns:1fr}}
+.box .ph{aspect-ratio:auto;min-height:240px}
+.bx{padding:20px;display:flex;flex-direction:column;gap:10px}
+.bx h2{font-family:"Cormorant Garamond",serif;margin:0;font-size:26px;line-height:1.1}
+.row{font-size:13px}.row b{display:block;font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.lock{background:var(--chip);border-radius:10px;padding:12px;font-size:13px}
+.btn{padding:11px 14px;border-radius:10px;border:none;background:var(--gold);color:#fff;font:600 14px Inter;opacity:.55;cursor:not-allowed}
+.x{position:absolute;top:14px;right:18px;font-size:26px;color:#fff;cursor:pointer;background:none;border:none}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><div class="brand">MADINA<small>GIDLAR PLATFORMASI</small></div><span class="tag">Demo versiya</span></div></header>
+<main class="wrap">
+<section class="hero">
+<h1>O'zbekistonning <em>sertifikatlangan</em> gidlari</h1>
+<p>Sayyohlar gidni haqiqiy sharhlar bo'yicha tanlaydi, gidlar esa buyurtmalarni to'g'ridan-to'g'ri oladi. Boshlang'ich baza — Turizm qo'mitasining rasmiy gidlar reyestri.</p>
+<div class="stats">
+<div class="stat"><b id="sTotal">—</b><span>gid bazada</span></div>
+<div class="stat"><b id="sAct">—</b><span>amaldagi sertifikat</span></div>
+<div class="stat"><b id="sLang">—</b><span>til</span></div>
+<div class="stat"><b>15</b><span>hudud</span></div>
+</div>
+</section>
+<section class="steps">
+<div class="step"><i>01</i><h3>Gid rozilik beradi</h3><p>Telegram-bot orqali profilini tasdiqlaydi: tillar, shaharlar, narx, rasm.</p></div>
+<div class="step"><i>02</i><h3>Buyurtma oladi</h3><p>Yangi tur chiqsa — bot kerakli shahar va tildagi gidlarga yuboradi.</p></div>
+<div class="step"><i>03</i><h3>Sharh to'playdi</h3><p>Turdan keyin sayyoh gid haqida sharh qoldiradi — reyting faqat haqiqiy.</p></div>
+</section>
+<section>
+<div class="filters">
+<input id="q" placeholder="Ism bo'yicha qidirish">
+<select id="fr"><option value="">Barcha hududlar</option></select>
+<select id="fl"><option value="">Barcha tillar</option></select>
+<select id="fa"><option value="1">Amaldagi sertifikat</option><option value="">Barchasi</option></select>
+</div>
+<div class="count" id="cnt"></div>
+<div class="grid" id="grid"></div>
+<button class="more" id="more">Ko'proq ko'rsatish</button>
+</section>
+</main>
+<footer><div class="wrap">Ma'lumotlar manbasi: O'zbekiston Respublikasi Turizm qo'mitasi — gidlar reyestri (gidlar.uz), 05.11.2026 holatiga. Aloqa ma'lumotlari gid profilni tasdiqlaganidan keyin ochiladi. © Madina Central Asia</div></footer>
+<div class="modal" id="m"><button class="x" id="mx">×</button><div class="box" id="mb"></div></div>
+<script>
+let D,F=[],shown=0;const PER=48,P="https://gidlar.sayohat.uz/api/file/real-guide/newgidlar-bucket/guides/";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ini=n=>n.split(/\s+/).slice(0,2).map(w=>w[0]||"").join("");
+const lang=i=>(D.lk.L[i]||"").replace(/ tili$/,"");
+function photo(g){return `<div class="ini">${esc(ini(g.n))}</div>`+(g.p?`<img loading="lazy" src="${P+esc(g.p)}" alt="${esc(g.n)}" onerror="this.remove()">`:"")}
+function card(g,i){return `<div class="card" data-i="${i}"><div class="ph">${photo(g)}<span class="badge ${g.a?'ok':'no'}">${g.a?'Sertifikat amalda':'Sertifikat muddati o‘tgan'}</span></div><div class="body"><div class="nm">${esc(g.n)}</div><div class="cat">${esc(D.lk.C[g.c]||'')}</div><div class="chips">${g.l.slice(0,4).map(l=>`<span class="chip">${esc(lang(l))}</span>`).join('')}${g.l.length>4?`<span class="chip">+${g.l.length-4}</span>`:''}</div><div class="reg">${esc(g.r.map(r=>D.lk.R[r]).join(', '))}</div><div class="rate">☆ Hali sharhlar yo'q · Tasdiqlanmagan</div></div></div>`}
+function apply(){const q=$("#q").value.trim().toLowerCase(),r=+$("#fr").value||0,l=+$("#fl").value||0,a=$("#fa").value;
+F=D.g.filter(g=>(!q||g.n.toLowerCase().includes(q))&&(!r||g.r.includes(r))&&(!l||g.l.includes(l))&&(!a||g.a));shown=0;$("#grid").innerHTML="";$("#cnt").textContent=`${F.length.toLocaleString('ru')} ta gid topildi`;draw()}
+function draw(){const part=F.slice(shown,shown+PER);$("#grid").insertAdjacentHTML("beforeend",part.map((g,k)=>card(g,shown+k)).join(""));shown+=part.length;$("#more").style.display=shown<F.length?"block":"none"}
+function open_(g){$("#mb").innerHTML=`<div class="ph">${photo(g)}</div><div class="bx"><h2>${esc(g.n)}</h2><div class="row"><b>Kategoriya</b>${esc(D.lk.C[g.c]||'')}</div><div class="row"><b>Sertifikat</b>${g.a?'Amalda':'Muddati o‘tgan'}${g.e?' · '+esc(g.e.split('-').reverse().join('.'))+' gacha':''}</div><div class="row"><b>Tillar</b>${esc(g.l.map(lang).join(', '))}</div><div class="row"><b>Hududlar</b>${esc(g.r.map(r=>D.lk.R[r]).join(', '))}</div><div class="lock">🔒 Gid profilni hali tasdiqlamagan. Tasdiqlagandan keyin aloqa, narx va sayyohlar sharhlari shu yerda ko'rinadi.</div><button class="btn" disabled>Buyurtma berish — tez orada</button></div>`;$("#m").classList.add("on")}
+$("#grid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)open_(F[+c.dataset.i])});
+$("#mx").onclick=()=>$("#m").classList.remove("on");$("#m").onclick=e=>{if(e.target.id==="m")$("#m").classList.remove("on")};
+$("#more").onclick=draw;["#q","#fr","#fl","#fa"].forEach(s=>$(s).addEventListener("input",apply));
+fetch("guides.json").then(r=>r.json()).then(j=>{D=j;$("#sTotal").textContent=j.meta.total.toLocaleString('ru');$("#sAct").textContent=j.meta.active.toLocaleString('ru');
+const used=new Set(j.g.flatMap(g=>g.l));$("#sLang").textContent=used.size;
+Object.entries(j.lk.R).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([k,v])=>$("#fr").insertAdjacentHTML("beforeend",`<option value="${k}">${esc(v)}</option>`));
+const cnt={};j.g.forEach(g=>g.l.forEach(l=>cnt[l]=(cnt[l]||0)+1));Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]).forEach(k=>$("#fl").insertAdjacentHTML("beforeend",`<option value="${k}">${esc(lang(k))} (${cnt[k]})</option>`));apply()});
+</script>
+</body>
+</html>
